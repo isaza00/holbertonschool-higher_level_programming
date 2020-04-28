@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-i = 1
-for c in range(ord('z'), ord('a') - 1, -1):
-    if i % 2 == 0:
-        char = chr(c).upper()
+for c in range(26, 0, -1):
+    if c % 2 == 0:
+        print("{:c}".format(c + 96), end="")
     else:
-        char = chr(c).lower()
-    print(char, end="")
-    i += 1
+        print("{:c}".format(c + 64), end="")
