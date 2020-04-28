@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 for i in range(99):
-    print(i, hex(i), sep=' = ')
+    print("{:d} {:#x}".format(i, i), sep=' = ')
