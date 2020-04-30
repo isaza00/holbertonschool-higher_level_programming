@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os
+import string
 
 
-os.system('echo "{A..Z}"')
+print(string.ascii_uppercase)
