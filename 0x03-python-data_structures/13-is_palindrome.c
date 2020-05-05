@@ -8,40 +8,37 @@
  */
 int is_palindrome(listint_t **head)
 {
-	size_t len = 0;
-	int i = 0, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;
-	const listint_t *temp, *last_loc;
+	int len = 0;
+	int i = 0; /*, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;*/
+	const listint_t *temp = *head;
+	int *arr;
 
 	if (!*head)
 		return (1);
-	temp = *head;
 	while (temp)
 	{
 		temp = temp->next;
 		len++;
 	}
 	temp = *head;
-	index_b = len - 1;
-	while (index_a < index_b)
-	{
-		while (i < index_b)
-		{
-			if (i == index_a)
-			{
-				node_a = temp->n;
-				last_loc = temp->next;
-			}
-			temp = temp->next;
-			i++;
-		}
-		node_b = temp->n;
-		if (node_a != node_b)
-			return (0);
-		j++;
-		i = j;
-		index_a++;
-		index_b--;
-		temp = last_loc;
+	arr = malloc(sizeof(int) * len);
+	if (!arr)
+		return (0);
+	for (i = 0; i <= (len - 1); i++)
+	{		
+		arr[i] = temp->n;
+		temp = temp->next;
 	}
+	if (is_palindrome_2(arr, 0, len - 1))
+		return (1);
+	return (0);
+}
+
+int is_palindrome_2(int *arr, int index_a, int index_b)
+{
+	if (arr[index_a] != arr[index_b])
+		return (0);
+	if (index_a < index_b)
+		is_palindrome_2(arr, index_a + 1, index_b - 1);
 	return (1);
 }
