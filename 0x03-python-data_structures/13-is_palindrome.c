@@ -37,7 +37,6 @@ int is_palindrome(listint_t **head)
 			i++;
 		}
 		node_b = temp->n;
-		
 		printf("node_a %d and node_b %d\n", node_a, node_b);
 		if (node_a != node_b)
 			return (0);
