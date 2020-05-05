@@ -21,8 +21,6 @@ int is_palindrome(listint_t **head)
 		len++;
 	}
 	temp = *head;
-	if (len == 1)
-		return (1);
 	index_b = len - 1;
 	while (index_a < index_b)
 	{
