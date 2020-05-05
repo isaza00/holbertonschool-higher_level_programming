@@ -31,20 +31,19 @@ int is_palindrome(listint_t **head)
 			if (i == index_a)
 			{
 				node_a = temp->n;
-				last_loc = temp;
+				last_loc = temp->next;
 			}
 			temp = temp->next;
 			i++;
 		}
 		node_b = temp->n;
-		printf("node_a %d and node_b %d\n", node_a, node_b);
 		if (node_a != node_b)
 			return (0);
 		j++;
 		i = j;
 		index_a++;
 		index_b--;
-		temp = last_loc->next;
+		temp = last_loc;
 	}
 	return (1);
 }
