@@ -38,8 +38,6 @@ int is_palindrome(listint_t **head)
 		len++;
 	}
 	temp = *head;
-	if (len == 1)
-		return (1);
 	arr = malloc(sizeof(int) * len);
 	if (!arr)
 		return (0);
@@ -49,6 +47,10 @@ int is_palindrome(listint_t **head)
 		temp = temp->next;
 	}
 	if (pal(arr, 0, len - 1) == 1)
+	{
+		free(arr);
 		return (1);
+	}
+	free(arr);
 	return (0);
 }
