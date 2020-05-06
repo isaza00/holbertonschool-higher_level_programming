@@ -32,20 +32,19 @@ int is_palindrome(listint_t **head)
 
 	if (!*head)
 		return (1);
-	arr = malloc(sizeof(int) * 1);
-	if (!arr)
-		return (0);
 	while (temp)
 	{
 		temp = temp->next;
 		len++;
 	}
 	temp = *head;
-	while (i <= (len - 1))
+	arr = malloc(sizeof(int) * len);
+	if (!arr)
+		return (0);
+	for (i = 0; i <= (len - 1); i++)
 	{
 		arr[i] = temp->n;
 		temp = temp->next;
-		i++;
 	}
 	if (pal(arr, 0, len - 1) == 1)
 	{
