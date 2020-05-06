@@ -26,7 +26,7 @@ int pal(int *arr, int index_a, int index_b)
 int is_palindrome(listint_t **head)
 {
 	int len = 0;
-	/*int i = 0, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;*/
+	int i = 0; /*, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;*/
 	const listint_t *temp = *head;
 	int *arr;
 
@@ -35,15 +35,17 @@ int is_palindrome(listint_t **head)
 	arr = malloc(sizeof(int) * 1);
 	if (!arr)
 		return (0);
-	temp = *head;
 	while (temp)
 	{
-		arr[len] = temp->n;
 		temp = temp->next;
 		len++;
-		arr = realloc(arr, sizeof(int) * len);
-		if (!arr)
-			return (0);
+	}
+	temp = *head;
+	while (i <= (len - 1))
+	{
+		arr[i] = temp->n;
+		temp = temp->next;
+		i++;
 	}
 	if (pal(arr, 0, len - 1) == 1)
 	{
