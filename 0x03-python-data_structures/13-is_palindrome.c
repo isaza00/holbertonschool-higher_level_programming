@@ -26,7 +26,7 @@ int pal(int *arr, int index_a, int index_b)
 int is_palindrome(listint_t **head)
 {
 	int len = 0;
-	int i = 0; /*, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;*/
+	/*int i = 0, j = 0, node_a = 0, node_b = 0, index_a = 0, index_b = 0;*/
 	const listint_t *temp = *head;
 	int *arr;
 
