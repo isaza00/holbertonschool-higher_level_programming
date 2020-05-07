@@ -11,6 +11,7 @@ def weight_average(my_list=[]):
         res = (mult / sum)
     return (truncate(res, 2))
 
+
 def truncate(n, decimals=0):
     multiplier = 10 ** decimals
     return int(n * multiplier) / multiplier
