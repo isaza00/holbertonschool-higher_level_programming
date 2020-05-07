@@ -9,6 +9,6 @@ def weight_average(my_list=[]):
         mult += i[0] * i[1]
         sum += i[1]
         if sum == 0:
-            return 0
-        res = int((mult / sum)*20) / 20
+            return 
+        res = int((mult / sum) * 20) / 20
     return (res)
