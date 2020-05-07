@@ -11,14 +11,6 @@ def weight_average(my_list=[]):
         res = (mult / sum)
     return (truncate(res, 2))
 
-
 def truncate(n, decimals=0):
     multiplier = 10 ** decimals
     return int(n * multiplier) / multiplier
-
-
-
-my_list = [(1, 2)]
-# = ((1 * 2) + (2 * 1) + (3 * 10) + (4 * 2)) / (2 + 1 + 10 + 2)
-result = weight_average(my_list)
-print("Average: {:0.2f}".format(result))
