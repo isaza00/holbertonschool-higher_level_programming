@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def weight_average(my_list=[]):
-    if my_list == []:
-        return (0)    
+    if not my_list:
+        return (0)
     res = 0
     mult = 1
     sum = 0
@@ -11,4 +11,3 @@ def weight_average(my_list=[]):
         if sum != 0:
             res = int((mult / sum) * 10) / 10
     return (res)
-
