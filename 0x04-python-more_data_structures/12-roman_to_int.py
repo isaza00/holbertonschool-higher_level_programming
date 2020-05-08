@@ -19,4 +19,3 @@ def roman_to_int(roman_string):
             sign *= -1
     suma += lista[-1]
     return (suma)
-print(roman_to_int(None))
