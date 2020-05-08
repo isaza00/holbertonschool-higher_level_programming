@@ -11,11 +11,10 @@ def roman_to_int(roman_string):
             lista.append(d[x])
     for index, i in enumerate(lista[:-1]):
         if i <= lista[index + 1]:
-            print(i, lista[index + 1])
             suma += i * sign
             sign = 1
         else:
             suma += i * sign
             sign *= -1
-    suma += lista[-1]
+    suma += lista[-1] * sign
     return (suma)
