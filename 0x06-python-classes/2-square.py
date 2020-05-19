@@ -9,10 +9,10 @@ class Square:
 
     def __init__(self, size=0):
         """The summary line for a class docstring should fit on one line."""
-        if type(size) == int:
-            if size >= 0:
-                self._size = size
-            else:
-                raise ValueError("size must be >= 0")
-        else:
+        if type(size) != int:
             raise TypeError("size must be an integer")
+        else:
+            if size < 0:
+                raise ValueError("size must be >= 0")
+            else:
+                self._size = size
