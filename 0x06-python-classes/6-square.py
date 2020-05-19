@@ -25,10 +25,6 @@ class Square:
         self.size = size
         self.position = position
 
-    def area(self):
-        """The summary line for a class docstring should fit on one line."""
-        return (self.__size * self.__size)
-
     @property
     def size(self):
         """The summary line for a class docstring should fit on one line."""
@@ -57,6 +53,10 @@ class Square:
                 self.__position = value
         else:
             raise TypeError("position must be a tuple of 2 positive integers")
+
+    def area(self):
+        """The summary line for a class docstring should fit on one line."""
+        return (self.__size ** 2)
 
     def my_print(self):
         if self.__size is 0:
