@@ -48,8 +48,8 @@ class Square:
 
     def my_print(self):
         """The summary line for a class docstring should fit on one line."""
-        i, j = 0, 0
-        x, y = 0, 0
+        i = 0
+        y = 0
         if self.__size == 0:
             print()
         else:
