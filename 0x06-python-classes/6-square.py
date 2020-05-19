@@ -46,7 +46,6 @@ class Square:
             raise TypeError("position must be a tuple of 2 positive integers")
 
     def my_print(self):
-        """The summary line for a class docstring should fit on one line."""
         if self.__size is 0:
             print()
         else:
