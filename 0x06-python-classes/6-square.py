@@ -31,11 +31,10 @@ class Square:
         """The summary line for a class docstring should fit on one line."""
         if type(value) != int:
             raise TypeError("size must be an integer")
-        else:
-            if value < 0:
+        elif value < 0:
                 raise ValueError("size must be >= 0")
-            else:
-                self.__size = value
+        else:
+            self.__size = value
 
     @position.setter
     def position(self, value):
@@ -48,12 +47,10 @@ class Square:
 
     def my_print(self):
         """The summary line for a class docstring should fit on one line."""
-        i = 0
         if self.__size is 0:
             print()
         else:
             print('\n' * self.__position[1], end="")
-            while i < self.__size:
+            for i in range(self.__size):
                 print(" " * self.__position[0], end="")
                 print("#" * self.__size)
-                i += 1
