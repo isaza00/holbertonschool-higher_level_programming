@@ -29,13 +29,13 @@ class Square:
     @size.setter
     def size(self, value):
         """The summary line for a class docstring should fit on one line."""
-        if type(value) == int:
-            if value >= 0:
-                self.__size = value
-            else:
-                raise ValueError("size must be >= 0")
-        else:
+        if type(value) != int:
             raise TypeError("size must be an integer")
+        else:
+            if value < 0:
+                raise ValueError("size must be >= 0")
+            else:
+                self.__size = value
 
     @position.setter
     def position(self, value):
