@@ -41,7 +41,7 @@ class Square:
     def position(self, value):
         """The summary line for a class docstring should fit on one line."""
         if (type(value) == tuple and len(value) == 2 and
-                value[0] == int and value[1] == int):
+                type(value[0]) == int and type(value[1]) == int):
                 self._position = value
         else:
             raise TypeError("position must be a tuple of 2 positive integers")
@@ -49,13 +49,21 @@ class Square:
     def my_print(self):
         """The summary line for a class docstring should fit on one line."""
         i, j = 0, 0
+        x, y = 0, 0
         if self._size == 0:
             print()
         else:
+            while y < self._position[1]:
+                print()
+                y += 1
             while i < self._size:
+                while x < self._position[0]:
+                    print(" ", end="")
+                    x += 1
                 while j < self._size:
                     print("#", end="")
                     j += 1
                 print()
+                x = 0
                 j = 0
                 i += 1
