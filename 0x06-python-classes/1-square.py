@@ -68,4 +68,4 @@ class Square:
             param1 (size): Description of `size.
 
         """
-        self._size = size
+        self.__size = size
