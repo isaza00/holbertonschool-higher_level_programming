@@ -88,6 +88,3 @@ class Rectangle:
     def square(cls, size=0):
         """ return an object square """
         return cls(size, size)
-
-print(Rectangle(0, 0))
-print(Rectangle.square(0))
