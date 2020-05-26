@@ -72,7 +72,7 @@ class Rectangle:
         """ deletion of instance """
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
-    
+
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """ bigger or equal instance """
@@ -84,4 +84,3 @@ class Rectangle:
             return rect_1
         else:
             return rect_2
-
