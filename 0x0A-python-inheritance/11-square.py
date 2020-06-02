@@ -31,4 +31,4 @@ class Square(Rectangle):
     def __str__(self):
         """ returns [Square] <width>/<height> string """
         a = str(self.__size)
-        return "[" + __class__.__name__ + "] " + a + "/" + a
+        return "[Square] " + a + "/" + a
