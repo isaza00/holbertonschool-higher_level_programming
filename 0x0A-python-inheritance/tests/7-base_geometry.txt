@@ -25,8 +25,8 @@ ValueError: width must be greater than 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "<stdin>", line 8, in integer_validator
-
 ValueError: width must be greater than 0
+
 >>> a.integer_validator()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -36,7 +36,6 @@ TypeError: integer_validator() missing 2 required positional arguments: 'name' a
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: integer_validator() missing 1 required positional argument: 'value'
-
 
 >>> a.integer_validator("age", (7,))
 Traceback (most recent call last):
