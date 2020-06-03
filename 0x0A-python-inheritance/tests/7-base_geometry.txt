@@ -46,3 +46,7 @@ TypeError: age must be an integer
 >>> a.integer_validator("age", None)
 Traceback (most recent call last):
 TypeError: age must be an integer
+
+>>> a.integer_validator("age", 5.54)
+Traceback (most recent call last):
+TypeError: age must be an integer
