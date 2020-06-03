@@ -15,15 +15,12 @@
 
 def read_lines(filename="", nb_lines=0):
     """ read nb_lines of a text """
-    i = 0
-    with open(filename, encoding='utf-8') as file:
-        for line in file:
-            i += 1
-        file.seek(0)
-        if nb_lines <= 0 or nb_lines >= i:
-            print(file.read())
+    with open(filename, encoding='utf-8') as f:
+        if (nb_lines <= 0):
+                print(f.read(), end="")
         else:
-            i = 0
-            while i < nb_lines:
-                print(file.readline().rstrip())
-                i += 1
+            cont = 0
+            while (cont < nb_lines):
+                print(f.readline(), end="")
+                cont += 1
+

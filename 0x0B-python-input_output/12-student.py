@@ -31,13 +31,13 @@ class Student:
     def to_json(self, attrs=None):
         """ retrieves a dictionary representation """
         dic = {}
-        if type(attrs) == list and attrs != []:
+        if type(attrs) != list:
+            return self.__dict__
+        else:
             for item in attrs:
                 if type(item) != str:
                     return self.__dict__
             for key in self.__dict__:
                 if key in attrs:
                     dic[key] = self.__dict__[key]
-        else:
-            dic = self.__dict__
         return dic
