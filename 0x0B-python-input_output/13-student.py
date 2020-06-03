@@ -30,9 +30,6 @@
 """
 
 
-import json
-
-
 class Student:
     """ class to create a dict obj """
 
@@ -45,15 +42,15 @@ class Student:
     def to_json(self, attrs=None):
         """ retrieves a dictionary representation of obj attrs"""
         dic = {}
-        if type(attrs) == list and attrs != []:
+        if type(attrs) != list:
+            return self.__dict__
+        else:
             for item in attrs:
                 if type(item) != str:
                     return self.__dict__
             for key in self.__dict__:
                 if key in attrs:
                     dic[key] = self.__dict__[key]
-        else:
-            dic = self.__dict__
         return dic
 
     def reload_from_json(self, json):
