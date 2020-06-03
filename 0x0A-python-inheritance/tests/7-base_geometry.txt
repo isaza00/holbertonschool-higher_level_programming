@@ -3,6 +3,8 @@
 >>> isinstance(a, BaseGeometry)
 True
 
+>>> a.integer_validator("width", 2)
+
 >>> a.area()
 Traceback (most recent call last):
 Exception: area() is not implemented
