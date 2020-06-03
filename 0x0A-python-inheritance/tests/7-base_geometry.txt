@@ -9,33 +9,25 @@ Traceback (most recent call last):
   File "<stdin>", line 3, in area
 Exception: area() is not implemented
 
->>> a.integer_validator("width", "a")
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 6, in integer_validator
-TypeError: width must be an integer
-
 >>> a.integer_validator("width", 0)
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 8, in integer_validator
 ValueError: width must be greater than 0
 
 >>> a.integer_validator("width", -5)
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 8, in integer_validator
 ValueError: width must be greater than 0
 
 >>> a.integer_validator()
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
 TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
 >>> a.integer_validator("width")
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
 TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> a.integer_validator("width", "a")
+Traceback (most recent call last):
+TypeError: width must be an integer
 
 >>> a.integer_validator("age", (7,))
 Traceback (most recent call last):
