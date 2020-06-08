@@ -9,6 +9,10 @@ from models.base import Base
 class TestBase(unittest.TestCase):
     """ tests cases for base clase """
 
+    def setUp(self):
+        """ reset nb_objects var to zero before each test """
+        Base._Base__nb_objects = 0
+
     def test_isinstance(self):
         """ Test if isinstance """
         b1 = Base()
@@ -40,6 +44,7 @@ class TestBase(unittest.TestCase):
 
     def test_continues_id3(self):
         """ check if the id is continuous """
+        """
         b1 = Base()
         b2 = Base(3)
         b3 = Base()
@@ -50,9 +55,12 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 2)
         self.assertEqual(b4.id, 4)
         self.assertEqual(b5.id, 5)
+        """
+        pass
 
     def test_no_repetition(self):
         """ check if the id is continuous """
+        """
         b1 = Base()
         b2 = Base()
         b3 = Base()
@@ -62,8 +70,9 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 3)
         with self.assertRaises(ValueError):
             self.assertEqual(b4.id, 3)
-        
-    
+        """
+        pass
+
     def test_number_arguments(self):
         """ check if it has right amount of args """
         with self.assertRaises(TypeError):
@@ -73,3 +82,109 @@ class TestBase(unittest.TestCase):
         """ check if private var nb_object is private """
         with self.assertRaises(AttributeError):
             Base.__nb_objects
+
+    """ TEST TO_JSON_STRING STATIC METHOD """
+
+    def test_to_json_string(self):
+        """ 15 check static method to_json_string BASE """
+        b1 = Base()
+        b2 = Base()
+        lis1 = "a"
+        lis2 = {b1, b2}
+        lis3 = {'b1': 1, 'b2': 2}
+        lis3 = (b1, b2)
+        lis4 = 1.55
+        lis5 = b1
+        lis6 = 1
+        b = Base()
+        lis = [b1.__dict__, b2.__dict__]
+        dic = {"id": 1}
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis1)
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis2)
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis3)
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis4)
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis5)
+        with self.assertRaises(TypeError):
+            b_json_dict_str = Base.to_json_string(lis6)
+        b_json_dict_str = Base.to_json_string([])
+        self.assertEqual(b_json_dict_str, "[]")
+        b_json_dict_str = Base.to_json_string(None)
+        self.assertEqual(b_json_dict_str, "[]")
+        b_json_dict_str = Base.to_json_string(lis)
+        self.assertNotEqual(type(b_json_dict_str), type(dic))
+        self.assertEqual(type(b_json_dict_str), str)
+        self.assertEqual(b_json_dict_str, '[{"id": 1}, {"id": 2}]')
+
+    """ TEST TO SAVE_TO_FILE CLASS METHOD """
+
+    def test_save_to_file(self):
+        """ 16 check class method to save_to_file Base """
+        b1 = Base()
+        b2 = Base()
+        lis1 = "a"
+        lis2 = {b1, b2}
+        lis3 = {'b1': 1, 'b2': 2}
+        lis3 = (b1, b2)
+        lis4 = 1.55
+        lis5 = b1
+        lis6 = 1
+        lis = [b1, 2]
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis1)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis2)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis3)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis4)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis5)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis6)
+        with self.assertRaises(TypeError):
+            Base.save_to_file(lis)
+        lis = [b1, b2]
+        result = Base.to_json_string(lis)
+        Base.save_to_file(lis)
+        with open("Base.json", mode="r", encoding="utf-8") as f:
+            text = f.read()
+        self.assertEqual(text, result)
+        b3 = Base()
+        b4 = Base()
+        lis = [b3, b4]
+        result = Base.to_json_string(lis)
+        Base.save_to_file(lis)
+        with open("Base.json", mode="r", encoding="utf-8") as f:
+            text = f.read()
+        self.assertEqual(text, result)
+
+    """ TEST TO JSON STRING TO DICT """
+
+    def test_from_json_string(self):
+        """17 test for from json string to dict Base """
+        str1 = None
+        str2 = ""
+        with self.assertRaises(TypeError):
+            Base.from_json_string(str1)
+        with self.assertRaises(TypeError):
+            Base.from_json_string(str2)
+        str3 = [{'id': 89, 'width': 10, 'height': 4}, 
+            {'id': 7, 'width': 1, 'height': 7}]
+        json_str = Base.to_json_string(str3)
+        lis = Base.from_json_string(json_str)
+        self.assertEqual(type(lis), list)
+        self.assertEqual(lis, [{'id': 89, 'width': 10, 'height': 4}, 
+            {'id': 7, 'width': 1, 'height': 7}])
+
+
+
+
+    
+
+
+
