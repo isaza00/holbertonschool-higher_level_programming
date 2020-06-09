@@ -33,6 +33,7 @@ class TestSquare(unittest.TestCase):
             s = Square(1, 2, 3, 4, 5)
 
     def test_correct_arguments(self):
+        """ test correct arguments """
         with self.assertRaises(TypeError):
             s = Square(1, x=3, y=4, i=5)
         with self.assertRaises(TypeError):

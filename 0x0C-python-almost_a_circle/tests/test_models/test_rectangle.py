@@ -34,6 +34,7 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(1, 2, 3, 4, 5, 6)
 
     def test_correct_arguments(self):
+        """ test correct arguments """
         with self.assertRaises(TypeError):
             r = Rectangle(1, 2, x=3, y=4, i=5)
         with self.assertRaises(TypeError):
