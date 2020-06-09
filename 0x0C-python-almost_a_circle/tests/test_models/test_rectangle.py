@@ -654,21 +654,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(type(r_dict), dict)
         self.assertEqual(r_dict, dic)
 
-    def test_to_json_string(self):
-        """ 15 check static method to_json_string RECTANGLE"""
-        r1 = Rectangle(1, 2, 3, 4)
-        r2 = Rectangle(10, 20)
-        with self.assertRaises(TypeError):
-            Rectangle.to_json_string(1)
-        lis = [r1.to_dictionary(), r2.to_dictionary()]
-        dic1 = '{"id": 1, "width": 1, "height": 2, "x": 3, "y": 4}'
-        dic2 = '{"id": 2, "width": 10, "height": 20, "x": 0, "y": 0}'
-        string = '[' + dic1 + ', ' + dic2 + ']'
-        b_json_dict_str = Rectangle.to_json_string(lis)
-        self.assertNotEqual(type(b_json_dict_str), dict)
-        self.assertEqual(type(b_json_dict_str), str)
-        self.assertEqual(b_json_dict_str, string)
-
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Rectange """
         r1 = Rectangle(1, 2, 3, 4, 5)
