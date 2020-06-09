@@ -122,71 +122,112 @@ class Base():
     @staticmethod
     def draw(list_rectangles, list_squares):
         """ print with turtle list of rectangles and squares """
-        turtles = []
-        turtles.append(turtle.Turtle())
+        turtles1 = []
+        turtles2 = []
+        turtles3 = []
+        turtles4 = []
+
+        for i in range((len(list_rectangles) + 2)*2):
+            turtles1.append(turtle.Turtle())
+            turtles2.append(turtle.Turtle())
+            turtles3.append(turtle.Turtle())
+            turtles4.append(turtle.Turtle())
+        
         #turtle.Screen.title("Welcome to the show")
         pos_x = 0
         pos_y = 0
+        i = 0
         for obj in list_rectangles:
+            i += 1
             dic = obj.to_dictionary()
             print(dic)
             w = dic['width']
             h = dic['height']
             x = dic['x']
             y = dic['y']
-            turtles[0].speed(1)
-            turtles[0].color('red')
-            turtles[0].pensize(1)
-            
-            turtles[0].goto(pos_x, 0)
+            #eje x
+            turtles1[i].penup()
+            turtles1[i].goto(pos_x, 0)
+            turtles1[i].pendown()
+            turtles1[i].forward(w + x + 10)
 
-            turtles[0].pendown()
-            turtles[0].goto(pos_x + x, -y)
-            turtles[0].begin_fill()
-            turtles[0].color('blue')
-            turtles[0].pensize(5)
-            turtles[0].forward(w)
-            turtles[0].right(90)
-            turtles[0].forward(h)
-            turtles[0].right(90)
-            turtles[0].forward(w)
-            turtles[0].right(90)
-            turtles[0].forward(h)
-            turtles[0].right(90)
-            turtles[0].end_fill()
-            turtles[0].penup()
-            pos_x += w + 50
+            #eje y
+            turtles2[i].penup()
+            turtles2[i].goto(pos_x, 0)
+            turtles2[i].pendown()
+            turtles2[i].right(90)
+            turtles2[i].forward(h + y + 10)
+            i += i
+
+            turtles1[0].speed(1)
+            turtles1[0].color('red')
+            turtles1[0].pensize(1)
+
+            turtles1[0].goto(pos_x, 0)
+            turtles1[0].pendown()
+            turtles1[0].goto(pos_x + x, -y)
+            turtles1[0].begin_fill()
+            turtles1[0].color('blue')
+            turtles1[0].pensize(5)
+            turtles1[0].forward(w)
+            turtles1[0].right(90)
+            turtles1[0].forward(h)
+            turtles1[0].right(90)
+            turtles1[0].forward(w)
+            turtles1[0].right(90)
+            turtles1[0].forward(h)
+            turtles1[0].right(90)
+            turtles1[0].end_fill()
+            turtles1[0].penup()
+            pos_x += w + 80
 
         pos_y += -150 - h
         pos_x = 0
+        i = 0
         for obj in list_squares:
+            i += 1
             dic = obj.to_dictionary()
             print(dic)
             s = dic['size']
             x = dic['x']
             y = dic['y']
-            turtles[0].speed(1)
-            turtles[0].color('red')
-            turtles[0].pensize(1)
-            
-            turtles[0].goto(pos_x, pos_y)
 
-            turtles[0].pendown()
-            turtles[0].goto(pos_x + x, pos_y - y)
-            turtles[0].begin_fill()
-            turtles[0].color('green')
-            turtles[0].pensize(5)
-            turtles[0].forward(s)
-            turtles[0].right(90)
-            turtles[0].forward(s)
-            turtles[0].right(90)
-            turtles[0].forward(s)
-            turtles[0].right(90)
-            turtles[0].forward(s)
-            turtles[0].right(90)
-            turtles[0].end_fill()
-            turtles[0].penup()
-            pos_x += s + 50
+            #eje x
+            turtles3[i].penup()
+            turtles3[i].goto(pos_x, pos_y)
+            turtles3[i].pendown()
+            turtles3[i].forward(x + w + 10)
+
+            #eje y
+            turtles4[i].penup()
+            turtles4[i].goto(pos_x, pos_y)
+            turtles4[i].pendown()
+            turtles4[i].right(90)
+            turtles4[i].forward(y + h + 10)
+            i += i
+
+            turtles1[0].speed(1)
+            turtles1[0].color('red')
+            turtles1[0].pensize(1)
+            
+            turtles1[0].goto(pos_x, pos_y)
+
+            turtles1[0].pendown()
+            turtles1[0].goto(pos_x + x, pos_y - y)
+            turtles1[0].begin_fill()
+            turtles1[0].color('green')
+            turtles1[0].pensize(5)
+            turtles1[0].forward(s)
+            turtles1[0].right(90)
+            turtles1[0].forward(s)
+            turtles1[0].right(90)
+            turtles1[0].forward(s)
+            turtles1[0].right(90)
+            turtles1[0].forward(s)
+            turtles1[0].right(90)
+            turtles1[0].end_fill()
+            turtles1[0].penup()
+            pos_x += s + 80
 
         turtle.Screen().exitonclick()
             

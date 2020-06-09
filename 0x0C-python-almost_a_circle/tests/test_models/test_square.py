@@ -320,3 +320,19 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(type(s_dict), dict)
         self.assertEqual(s_dict, dic)
 
+    """ TEST TO_JSON_STRING STATIC METHOD """
+
+    def test_to_json_string(self):
+        """ 15 check static method to_json_string Square"""
+        s1 = Square(1, 2, 3)
+        s2 = Square(10)
+        with self.assertRaises(TypeError):
+            Square.to_json_string(1)
+        lis = [s1.to_dictionary(), s2.to_dictionary()]
+        dic1 = '{"id": 1, "size": 1, "x": 2, "y": 3}'
+        dic2 = '{"id": 2, "size": 10, "x": 0, "y": 0}'
+        string = '[' + dic1 + ', ' + dic2 + ']'
+        b_json_dict_str = Rectangle.to_json_string(lis)
+        self.assertNotEqual(type(b_json_dict_str), dict)
+        self.assertEqual(type(b_json_dict_str), str)
+        self.assertEqual(b_json_dict_str, string)
