@@ -41,7 +41,6 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(1, 2, g=3, y=4, id=5)
 
     """ TEST ID CONTINUITY """
-
     def test_continues_id1(self):
         """ check if the id is continuous """
         r1 = Rectangle(1, 2, 3, 4)
@@ -68,23 +67,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 2)
         self.assertEqual(r4.id, 3)
 
-    def test_continues_id3(self):
-        """ check if the id is continuous """
-        """
-        r1 = Rectangle(10, 10)
-        r2 = Rectangle(10, 10, id=3)
-        r3 = Rectangle(10, 10)
-        r4 = Rectangle(10, 10)
-        r5 = Rectangle(10, 10)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r2.id, 3)
-        self.assertEqual(r3.id, 2)
-        self.assertEqual(r4.id, 4)
-        self.assertEqual(r5.id, 5)
-        """
-
     """ TEST PRIVATE VARIABLES """
-
     def test_private_width(self):
         """ check if private var width is private """
         r = Rectangle(1, 2)
@@ -110,7 +93,6 @@ class TestRectangle(unittest.TestCase):
             r.__y
 
     """ GETTER METHODS """
-
     def test_getter_method_width(self):
         """ check getter width """
         r = Rectangle(1, 1)
@@ -136,7 +118,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.y, 5)
 
     """ TEST SETTER METHODS """
-
     def test_setter_method_width(self):
         """ check setter method width """
         r = Rectangle(1, 2)
@@ -168,7 +149,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.y, 4)
 
     """ TESTS FOR TYPE ERROR NOT IN VALIDATION WIDTH AND HEIGHT """
-
     def test_validate_int_width(self):
         """ test int and >= 0 """
         msg_width = "width must be an integer"
@@ -278,7 +258,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(msg_height, str(e.exception))
 
     """ TESTS FOR TYPE ERROR NOT INT VALIDATION X AND Y """
-
     def test_validate_int_x(self):
         """ test int and >= 0 """
         msg_x = "x must be an integer"
@@ -388,7 +367,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(msg_y, str(e.exception))
 
     """ TESTS FOR VALUE VALIDATION <= 0 FOR WIDTH AND HEIGHT"""
-
     def test_validate_positive_width(self):
         """ test error when width <= 0 """
         msg_width = "width must be > 0"
@@ -426,7 +404,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(msg_height, str(e.exception))
 
     """ TESTS FOR VALUE VALIDATION < 0 FOR X AND Y"""
-
     def test_validate_positive_x(self):
         """ test error when x < 0 """
         msg_x = "x must be >= 0"
@@ -503,7 +480,6 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     """ TEST FOR __STR__ METHOD """
-
     def test_printing(self):
         """ 6 override __str method """
         r1 = Rectangle(4, 6, 2, 1, 12)
@@ -530,9 +506,6 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     """ TEST FOR UPDATE METHOD """
-
-    """Remember to ask what if repeated id"""
-
     def test_update(self):
         """ 8 test for update method """
         r = Rectangle(10, 20, 30, 40, 50)
@@ -679,7 +652,6 @@ class TestRectangle(unittest.TestCase):
         r.update(a=5, b=2, i=3, width=1, height=2, x=3, y=4, id=6)
 
     """ DICT REPRESENTATION OF A REACTANGLE CLASS """
-
     def test_dict_repr(self):
         """ 13 test dict representation of rectangle Rect """
         dic = {"id": 5, "width": 1, "height": 2, "x": 3, "y": 4}
@@ -695,7 +667,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r_dict, dic)
 
     """ TEST TO_JSON_STRING STATIC METHOD """
-
     def test_to_json_string(self):
         """ 15 check static method to_json_string RECTANGLE"""
         r1 = Rectangle(1, 2, 3, 4)
@@ -712,7 +683,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(b_json_dict_str, string)
 
     """ TEST TO SAVE_TO_FILE CLASS METHOD """
-
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Rectange """
         r1 = Rectangle(1, 2, 3, 4, 5)
@@ -772,7 +742,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(lis, [str3])
 
     """ TEST TO CREATE AN INSTANCE WITH ALL ATTRIBUTES AS DICT """
-
     def test_create(self):
         """ 18 returns an instance with all attrs set Rect"""
         dic = {'id': 1, 'width': 2, 'height': 3, 'x': 4, 'y': 5}
@@ -795,7 +764,6 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle.create(1, 2)
 
     """ TEST TO LOAD FROM FILE """
-
     def test_load_from_file(self):
         """ return a list of instances from a file """
         a = "Rectangle.json"
@@ -816,7 +784,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2_s, r2_d)
 
     """ TEST TO SAVE_TO_FILE_CVS CLASS METHOD """
-
     def test_save_to_file_csv(self):
         """ 20 check class method to save_to_file CVS Rectange """
         r1 = Rectangle(1, 2)

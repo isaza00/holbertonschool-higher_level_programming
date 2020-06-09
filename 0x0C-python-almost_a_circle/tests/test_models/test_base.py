@@ -42,37 +42,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 2)
         self.assertEqual(b4.id, 3)
 
-    def test_continues_id3(self):
-        """ check if the id is continuous """
-        """
-        b1 = Base()
-        b2 = Base(3)
-        b3 = Base()
-        b4 = Base()
-        b5 = Base()
-        self.assertEqual(b1.id, 1)
-        self.assertEqual(b2.id, 3)
-        self.assertEqual(b3.id, 2)
-        self.assertEqual(b4.id, 4)
-        self.assertEqual(b5.id, 5)
-        """
-        pass
-
-    def test_no_repetition(self):
-        """ check if the id is continuous """
-        """
-        b1 = Base()
-        b2 = Base()
-        b3 = Base()
-        b4 = Base(3)
-        self.assertEqual(b1.id, 1)
-        self.assertEqual(b2.id, 2)
-        self.assertEqual(b3.id, 3)
-        with self.assertRaises(ValueError):
-            self.assertEqual(b4.id, 3)
-        """
-        pass
-
     def test_number_arguments(self):
         """ check if it has right amount of args """
         with self.assertRaises(TypeError):
@@ -84,7 +53,6 @@ class TestBase(unittest.TestCase):
             Base.__nb_objects
 
     """ TEST TO_JSON_STRING STATIC METHOD """
-
     def test_to_json_string(self):
         """ 15 check static method to_json_string BASE """
         b1 = Base()
@@ -122,12 +90,6 @@ class TestBase(unittest.TestCase):
         self.assertNotEqual(type(b_json_dict_str), type(dic))
         self.assertEqual(type(b_json_dict_str), str)
         self.assertEqual(b_json_dict_str, '[{"id": 1}, {"id": 2}]')
-
-    """ TEST TO SAVE_TO_FILE CLASS METHOD """
-
-    def test_save_to_file(self):
-        """ 16 check class method to save_to_file Base """
-        pass
 
     """ TEST FROM JSON STRING TO DICT """
     def test_from_json_string(self):
