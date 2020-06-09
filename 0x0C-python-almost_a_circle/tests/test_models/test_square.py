@@ -40,7 +40,6 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             s = Square(1, g=3, y=4, id=5)
 
-    """ TEST ID CONTINUITY """
     def test_continues_id1(self):
         """ 10 check if the id is continuous """
         s1 = Square(2, 3, 4)
@@ -67,7 +66,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s3.id, 2)
         self.assertEqual(s4.id, 3)
 
-    """ TEST FOR __STR__ METHOD """
     def test_printing(self):
         """ 10 check overloading of __str__ """
         s1 = Square(4, 2, 1, 12)
@@ -83,20 +81,17 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(output.getvalue(), "[Square] (12) 2/1 - 4\n")
         sys.stdout = sys.__stdout__
 
-    """ GETTER METHOD FOR SIZE """
     def test_getter_method_size(self):
         """ check getter width """
         s = Square(20)
         self.assertEqual(s.size, 20)
 
-    """ TEST SETTER METHODS """
     def test_setter_method_size(self):
         """ check setter method """
         s = Square(1)
         s.size = 3
         self.assertEqual(s.size, 3)
 
-    """ TESTS FOR TYPE ERROR NOT IN VALIDATION WIDTH AND HEIGHT """
     def test_validate_int_width(self):
         """ 10 test int and >= 0 """
         msg_width = "width must be an integer"
@@ -164,7 +159,6 @@ class TestSquare(unittest.TestCase):
             s.size = False
         self.assertEqual(msg_width, str(e.exception))
 
-    """ TESTS FOR VALUE VALIDATION <= 0 FOR SIZE AND HEIGHT"""
     def test_validate_positive_size(self):
         """ 10 test error when size <= 0 """
         msg_width = "width must be > 0"
@@ -184,7 +178,6 @@ class TestSquare(unittest.TestCase):
             s.size = -1
         self.assertEqual(msg_width, str(e.exception))
 
-    """ TEST FOR DISPLAY() METHOD """
     def test_display(self):
         """ 10 test for display method """
         output = io.StringIO()
@@ -215,7 +208,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(output.getvalue(), " ##\n ##\n")
         sys.stdout = sys.__stdout__
 
-    """ TEST FOR AREA() METHOD """
     def test_area(self):
         """ 10 test for area method """
         s = Square(3)
@@ -225,7 +217,6 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             s.area(2, 3)
 
-    """ TEST FOR UPDATE WITH ARGS AND KWARGS """
     def test_update_args_kwargs(self):
         """ 12 test for args and kwars on update method """
         s = Square(10, 10, 10)
@@ -274,7 +265,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.x, 10)
         self.assertEqual(s.y, 10)
 
-    """ DICT REPRESENTATION OF A SQUARE CLASS """
     def test_dict_repr(self):
         """ 14 test dict representation of square """
         dic = {"size": 1, "x": 2, "y": 3, "id": 4}
@@ -289,7 +279,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(type(s_dict), dict)
         self.assertEqual(s_dict, dic)
 
-    """ TEST TO_JSON_STRING STATIC METHOD """
     def test_to_json_string(self):
         """ 15 check static method to_json_string Square"""
         s1 = Square(1, 2, 3)
@@ -305,7 +294,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(type(b_json_dict_str), str)
         self.assertEqual(b_json_dict_str, string)
 
-    """ TEST TO SAVE_TO_FILE CLASS METHOD """
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Square """
         s1 = Square(2, 3, 4, 5)
@@ -325,7 +313,6 @@ class TestSquare(unittest.TestCase):
         with open("Square.json", "r") as f:
             self.assertEqual(f.read(), testText)
 
-    """ TEST FROM JSON STRING TO DICT """
     def test_from_json_string(self):
         """17 test for from json string to dict Rectangle """
         str1 = 1
@@ -364,7 +351,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(type(lis), list)
         self.assertEqual(lis, [str3])
 
-    """ TEST TO CREATE AN INSTANCE WITH ALL ATTRIBUTES AS DICT """
     def test_create(self):
         """ 18 returns an instance with all attrs set Square """
         dic = {'id': 1, 'size': 3, 'x': 4, 'y': 5}
@@ -386,7 +372,6 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             s = Square.create(1, 2)
 
-    """ TEST TO LOAD FROM FILE """
     def test_load_from_file(self):
         """ return a list of instances from a file Square """
         a = "Square.json"

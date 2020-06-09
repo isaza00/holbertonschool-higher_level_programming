@@ -52,7 +52,6 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(AttributeError):
             Base.__nb_objects
 
-    """ TEST TO_JSON_STRING STATIC METHOD """
     def test_to_json_string(self):
         """ 15 check static method to_json_string BASE """
         b1 = Base()
@@ -91,7 +90,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(b_json_dict_str), str)
         self.assertEqual(b_json_dict_str, '[{"id": 1}, {"id": 2}]')
 
-    """ TEST FROM JSON STRING TO DICT """
     def test_from_json_string(self):
         """17 test for from json string to dict Base """
         str1 = 1
