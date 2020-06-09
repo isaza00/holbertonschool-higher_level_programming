@@ -37,9 +37,6 @@ class Base():
         """ write json string of list_objs to a file """
         if type(list_objs) != list:
             raise TypeError
-        for obj in list_objs:
-            if not isinstance(obj, cls):
-                raise TypeError
         if list_objs:
             lis = [obj.to_dictionary() for obj in list_objs]
             json_obj = cls.to_json_string(lis)
