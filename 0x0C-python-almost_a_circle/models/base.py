@@ -23,7 +23,7 @@ class Base():
     @staticmethod
     def to_json_string(list_dictionaries):
         """ 15 return json str of list of dicts """
-        if type(list_dictionaries) != list and list_dictionaries != None:
+        if type(list_dictionaries) != list and list_dictionaries is not None:
             raise TypeError
         if not list_dictionaries or list_dictionaries is None:
             return "[]"
@@ -49,7 +49,7 @@ class Base():
     @staticmethod
     def from_json_string(json_string):
         """ return python list of json string representation """
-        if type(json_string) != str and json_string != None:
+        if type(json_string) != str and json_string is not None:
             raise TypeError
         if json_string is None or json_string == "[]" or json_string == "":
             return []
@@ -59,7 +59,10 @@ class Base():
     @classmethod
     def create(cls, **dictionary):
         """ returns an instance with all attributes set """
-        dummy = cls(1, 1)
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
 
@@ -132,8 +135,7 @@ class Base():
             turtles2.append(turtle.Turtle())
             turtles3.append(turtle.Turtle())
             turtles4.append(turtle.Turtle())
-        
-        #turtle.Screen.title("Welcome to the show")
+
         pos_x = 0
         pos_y = 0
         i = 0
@@ -145,13 +147,12 @@ class Base():
             h = dic['height']
             x = dic['x']
             y = dic['y']
-            #eje x
+
             turtles1[i].penup()
             turtles1[i].goto(pos_x, 0)
             turtles1[i].pendown()
             turtles1[i].forward(w + x + 10)
 
-            #eje y
             turtles2[i].penup()
             turtles2[i].goto(pos_x, 0)
             turtles2[i].pendown()
@@ -192,13 +193,11 @@ class Base():
             x = dic['x']
             y = dic['y']
 
-            #eje x
             turtles3[i].penup()
             turtles3[i].goto(pos_x, pos_y)
             turtles3[i].pendown()
             turtles3[i].forward(x + w + 10)
 
-            #eje y
             turtles4[i].penup()
             turtles4[i].goto(pos_x, pos_y)
             turtles4[i].pendown()
@@ -209,7 +208,7 @@ class Base():
             turtles1[0].speed(1)
             turtles1[0].color('red')
             turtles1[0].pensize(1)
-            
+
             turtles1[0].goto(pos_x, pos_y)
 
             turtles1[0].pendown()
@@ -230,6 +229,3 @@ class Base():
             pos_x += s + 80
 
         turtle.Screen().exitonclick()
-            
-            
-

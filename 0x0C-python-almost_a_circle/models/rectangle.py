@@ -15,7 +15,7 @@ class Rectangle(Base):
         self.height = height
         self.x = x
         self.y = y
-    
+
     @property
     def width(self):
         """ getter method for width """
@@ -118,5 +118,5 @@ class Rectangle(Base):
         h = self.height
         x = self.x
         y = self.y
-        dic = {'id': i, 'width': w,'height': h, 'x': x, 'y': y}
+        dic = {'id': i, 'width': w, 'height': h, 'x': x, 'y': y}
         return dic

@@ -22,7 +22,6 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 1)
         self.assertIsInstance(r, Rectangle)
         self.assertIsInstance(r, Base)
-        
 
     def test_number_arguments(self):
         """ check if number of arg is right """
@@ -57,7 +56,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r4.id, 3)
         self.assertEqual(r5.id, 101)
         self.assertEqual(r6.id, 4)
-    
+
     def test_continues_id2(self):
         """ check if the id is continuous """
         r1 = Rectangle(1, 2, 3, 4, 100)
@@ -143,13 +142,13 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 2)
         r.width = 3
         self.assertEqual(r.width, 3)
-    
+
     def test_setter_method_height(self):
         """ check setter method height """
         r = Rectangle(1, 2)
         r.height = 3
         self.assertEqual(r.height, 3)
-    
+
     def test_setter_method_x(self):
         """ check setter method x"""
         r = Rectangle(1, 2)
@@ -158,7 +157,7 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 2, x=3)
         r.x = 4
         self.assertEqual(r.x, 4)
-    
+
     def test_setter_method_y(self):
         """ check setter method y"""
         r = Rectangle(1, 2)
@@ -463,9 +462,8 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(1, 2, 3, 4)
             r.y = -1
         self.assertEqual(msg_y, str(e.exception))
-    
-    """ TEST FOR AREA() METHOD """
 
+    """ TEST FOR AREA() METHOD """
     def test_area(self):
         """ 4 test for area method """
         r = Rectangle(2, 3)
@@ -476,7 +474,6 @@ class TestRectangle(unittest.TestCase):
             r.area(2, 3)
 
     """ TEST FOR DISPLAY() METHOD """
-    
     def test_display(self):
         """ 5 and 7 test for display method """
         output = io.StringIO()
@@ -623,9 +620,7 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r.update(*lis)
 
-
     """ TEST FOR UPDATE WITH ARGS AND KWARGS """
-
     def test_update_args_kwargs(self):
         """8 and 9 test for args and kwars on update method Rectangle"""
         r = Rectangle(10, 10, 10, 10)
@@ -764,9 +759,8 @@ class TestRectangle(unittest.TestCase):
         testText = Rectangle.to_json_string([test.to_dictionary()])
         with open("Rectangle.json", "r") as f:
             self.assertEqual(f.read(), testText)
-        
-    """ TEST FROM JSON STRING TO DICT """
 
+    """ TEST FROM JSON STRING TO DICT """
     def test_from_json_string(self):
         """17 test for from json string to dict Rectangle """
         str1 = 1
@@ -808,19 +802,19 @@ class TestRectangle(unittest.TestCase):
     """ TEST TO CREATE AN INSTANCE WITH ALL ATTRIBUTES AS DICT """
 
     def test_create(self):
-        """ 18 returns an instance with all attrs set """
+        """ 18 returns an instance with all attrs set Rect"""
         dic = {'id': 1, 'width': 2, 'height': 3, 'x': 4, 'y': 5}
         r = Rectangle.create(**dic)
         r_dict = r.to_dictionary()
         self.assertEqual(r_dict, dic)
 
         str4 = {}
-        dic = {'id': 2, 'width': 1, 'height': 1, 'x': 0, 'y':0}
+        dic = {'id': 2, 'width': 1, 'height': 1, 'x': 0, 'y': 0}
         r = Rectangle.create(**str4)
         r_dict = r.to_dictionary()
         self.assertEqual(r_dict, dic)
 
-        dic = {'id': 3, 'width': 20, 'height': 1, 'x': 0, 'y':0}
+        dic = {'id': 3, 'width': 20, 'height': 1, 'x': 0, 'y': 0}
         r = Rectangle.create(width=20)
         r_dict = r.to_dictionary()
         self.assertEqual(r_dict, dic)
@@ -849,5 +843,51 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1_s, r1_d)
         self.assertEqual(r2_s, r2_d)
 
-        
+    """ TEST TO SAVE_TO_FILE_CVS CLASS METHOD """
 
+    def test_save_to_file_csv(self):
+        """ 20 check class method to save_to_file CVS Rectange """
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(3, 4)
+        lis1 = "a"
+        lis2 = {r1, r2}
+        lis3 = {'b1': 1, 'b2': 2}
+        lis3 = (r1, r2)
+        lis4 = 1.55
+        lis5 = r1
+        lis6 = 1
+        lis = [r1, 2]
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis1)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis2)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis3)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis4)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis5)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis6)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(lis)
+
+        r1 = Rectangle(1, 2, 3, 4, 5)
+        r2 = Rectangle(6, 7, 8, 9, 10)
+        b = 5
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([r1, b])
+
+        lis = [r1, r2]
+        result = "5,1,2,3,4\n10,6,7,8,9\n"
+
+        Rectangle.save_to_file_csv(lis)
+        with open("Rectangle.csv", mode="r", encoding="utf-8") as f:
+            text = f.read()
+        self.assertEqual(text, result)
+
+        test = Rectangle(1, 2)
+        result = "3,1,2,0,0\n"
+        Rectangle.save_to_file_csv([test])
+        with open("Rectangle.csv", "r") as f:
+            self.assertEqual(f.read(), result)

@@ -19,7 +19,7 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(b1, Base)
         b2 = Base(100)
         self.assertIsInstance(b2, Base)
-    
+
     def test_continues_id1(self):
         """ check if the id is continuous """
         b1 = Base()
@@ -30,7 +30,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b2.id, 2)
         self.assertEqual(b3.id, 100)
         self.assertEqual(b4.id, 3)
-    
+
     def test_continues_id2(self):
         """ check if the id is continuous """
         b1 = Base(100)
@@ -77,7 +77,7 @@ class TestBase(unittest.TestCase):
         """ check if it has right amount of args """
         with self.assertRaises(TypeError):
             b = Base(1, 2)
-    
+
     def test_private_class_var(self):
         """ check if private var nb_object is private """
         with self.assertRaises(AttributeError):
@@ -128,10 +128,8 @@ class TestBase(unittest.TestCase):
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Base """
         pass
-        
 
     """ TEST FROM JSON STRING TO DICT """
-
     def test_from_json_string(self):
         """17 test for from json string to dict Base """
         str1 = 1
@@ -161,18 +159,10 @@ class TestBase(unittest.TestCase):
         self.assertEqual(lis, [])
         lis = Base.from_json_string(str3)
         self.assertEqual(lis, [])
-        str3 = [{'id': 89, 'width': 10, 'height': 4}, 
-            {'id': 7, 'width': 1, 'height': 7}]
+        str3 = [{'id': 89, 'width': 10, 'height': 4},
+                {'id': 7, 'width': 1, 'height': 7}]
         json_str = Base.to_json_string(str3)
         lis = Base.from_json_string(json_str)
         self.assertEqual(type(lis), list)
-        self.assertEqual(lis, [{'id': 89, 'width': 10, 'height': 4}, 
-            {'id': 7, 'width': 1, 'height': 7}])
-
-
-
-
-    
-
-
-
+        self.assertEqual(lis, [{'id': 89, 'width': 10, 'height': 4},
+                               {'id': 7, 'width': 1, 'height': 7}])
