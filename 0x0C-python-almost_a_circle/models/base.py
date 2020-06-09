@@ -35,8 +35,6 @@ class Base():
     @classmethod
     def save_to_file(cls, list_objs):
         """ write json string of list_objs to a file """
-        if type(list_objs) != list:
-            raise TypeError
         if list_objs:
             lis = [obj.to_dictionary() for obj in list_objs]
             json_obj = cls.to_json_string(lis)
