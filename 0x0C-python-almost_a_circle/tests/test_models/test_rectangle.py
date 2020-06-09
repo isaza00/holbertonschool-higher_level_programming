@@ -715,36 +715,8 @@ class TestRectangle(unittest.TestCase):
 
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Rectange """
-        r1 = Rectangle(1, 2)
-        r2 = Rectangle(3, 4)
-        lis1 = "a"
-        lis2 = {r1, r2}
-        lis3 = {'b1': 1, 'b2': 2}
-        lis3 = (r1, r2)
-        lis4 = 1.55
-        lis5 = r1
-        lis6 = 1
-        lis = [r1, 2]
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis1)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis2)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis3)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis4)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis5)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis6)
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file(lis)
-
         r1 = Rectangle(1, 2, 3, 4, 5)
         r2 = Rectangle(6, 7, 8, 9, 10)
-        b = 5
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file([r1, b])
 
         lis = [r1, r2]
         l_dic = [obj.to_dictionary() for obj in lis]

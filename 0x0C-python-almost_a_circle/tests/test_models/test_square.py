@@ -338,36 +338,8 @@ class TestSquare(unittest.TestCase):
 
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Square """
-        s1 = Square(1)
-        s2 = Square(3)
-        lis1 = "a"
-        lis2 = {s1, s2}
-        lis3 = {'b1': 1, 'b2': 2}
-        lis3 = (s1, s2)
-        lis4 = 1.55
-        lis5 = s1
-        lis6 = 1
-        lis = [s1, 2]
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis1)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis2)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis3)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis4)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis5)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis6)
-        with self.assertRaises(TypeError):
-            Square.save_to_file(lis)
-
         s1 = Square(2, 3, 4, 5)
         s2 = Square(7, 8, 9, 10)
-        b = 5
-        with self.assertRaises(TypeError):
-            Square.save_to_file([s1, b])
 
         lis = [s1, s2]
         l_dic = [obj.to_dictionary() for obj in lis]
