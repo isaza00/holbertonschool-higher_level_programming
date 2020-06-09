@@ -41,8 +41,8 @@ class Base():
             if not isinstance(obj, cls):
                 raise TypeError
         if list_objs:
-        lis = [obj.to_dictionary() for obj in list_objs]
-        json_obj = cls.to_json_string(lis)
+            lis = [obj.to_dictionary() for obj in list_objs]
+            json_obj = cls.to_json_string(lis)
         else:
             json_obj = "[]"
         file_name = cls.__name__ + ".json"
