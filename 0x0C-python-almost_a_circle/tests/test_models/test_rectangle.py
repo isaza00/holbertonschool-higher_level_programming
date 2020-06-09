@@ -5,6 +5,7 @@
 import unittest
 import io
 import sys
+import os
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -686,20 +687,17 @@ class TestRectangle(unittest.TestCase):
 
     def test_dict_repr(self):
         """ 13 test dict representation of rectangle Rect """
-        dic = {"width": 1, "height": 2, "x": 3, "y": 4, "id": 5}
+        dic = {"id": 5, "width": 1, "height": 2, "x": 3, "y": 4}
         r = Rectangle(1, 2, 3, 4, 5)
         r_dict = r.to_dictionary()
         self.assertEqual(r_dict, dic)
-
         self.assertEqual(type(r_dict), dict)
-        self.assertEqual(r_dict, dic)
+
         dic = {"width": 1, "height": 2, "x": 0, "y": 0, "id": 1}
         r1 = Rectangle(1, 2)
         r_dict = r1.to_dictionary()
         self.assertEqual(type(r_dict), dict)
         self.assertEqual(r_dict, dic)
-
-        sys.stdout = sys.__stdout__
 
     """ TEST TO_JSON_STRING STATIC METHOD """
 
@@ -707,11 +705,13 @@ class TestRectangle(unittest.TestCase):
         """ 15 check static method to_json_string RECTANGLE"""
         r1 = Rectangle(1, 2, 3, 4)
         r2 = Rectangle(10, 20)
-        lis = [r1.__dict__, r2.__dict__]
-        dic1 = '{"width": 1, "height": 2, "x": 3, "y": 4, "id": 1}'
-        dic2 = '{"width": 10, "height": 20, "x": 0, "y": 0, "id": 2}'
-        string = '[' + dic1 + dic2 + ']'
-        b_json_dict_str = Base.to_json_string(lis)
+        with self.assertRaises(TypeError):
+            Rectangle.to_json_string(1)
+        lis = [r1.to_dictionary(), r2.to_dictionary()]
+        dic1 = '{"id": 1, "width": 1, "height": 2, "x": 3, "y": 4}'
+        dic2 = '{"id": 2, "width": 10, "height": 20, "x": 0, "y": 0}'
+        string = '[' + dic1 + ', ' + dic2 + ']'
+        b_json_dict_str = Rectangle.to_json_string(lis)
         self.assertNotEqual(type(b_json_dict_str), dict)
         self.assertEqual(type(b_json_dict_str), str)
         self.assertEqual(b_json_dict_str, string)
@@ -720,25 +720,134 @@ class TestRectangle(unittest.TestCase):
 
     def test_save_to_file(self):
         """ 16 check class method to save_to_file Rectange """
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(3, 4)
+        lis1 = "a"
+        lis2 = {r1, r2}
+        lis3 = {'b1': 1, 'b2': 2}
+        lis3 = (r1, r2)
+        lis4 = 1.55
+        lis5 = r1
+        lis6 = 1
+        lis = [r1, 2]
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis1)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis2)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis3)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis4)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis5)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis6)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(lis)
+
         r1 = Rectangle(1, 2, 3, 4, 5)
         r2 = Rectangle(6, 7, 8, 9, 10)
-        b = Base()
+        b = 5
         with self.assertRaises(TypeError):
-            Base.save_to_file([r1, b])
-        lis = Base.to_json_string([r1, r2])
-        Base.save_to_file([r1, r2])
+            Rectangle.save_to_file([r1, b])
+
+        lis = [r1, r2]
+        l_dic = [obj.to_dictionary() for obj in lis]
+        result = Rectangle.to_json_string(l_dic)
+        Rectangle.save_to_file(lis)
         with open("Rectangle.json", mode="r", encoding="utf-8") as f:
             text = f.read()
-        self.assertEqual(text, lis)
+        self.assertEqual(text, result)
 
+        test = Rectangle(1, 2)
+        Rectangle.save_to_file([test])
+        testText = Rectangle.to_json_string([test.to_dictionary()])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), testText)
+        
+    """ TEST FROM JSON STRING TO DICT """
 
+    def test_from_json_string(self):
+        """17 test for from json string to dict Rectangle """
+        str1 = 1
+        str2 = (1,)
+        str3 = {1, 2}
+        str4 = {"a": 1}
+        str5 = True
+        str6 = 1.45
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str1)
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str2)
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str3)
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str4)
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str5)
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string(str6)
+        str1 = None
+        str2 = "[]"
+        str3 = ""
+        lis = Rectangle.from_json_string(str1)
+        self.assertEqual(lis, [])
+        lis = Rectangle.from_json_string(str2)
+        self.assertEqual(lis, [])
+        lis = Rectangle.from_json_string(str3)
+        self.assertEqual(lis, [])
 
+        r = Rectangle(1, 2)
+        r.update(10, 10, 10, 10, 10)
+        str3 = r.to_dictionary()
+        json_str = Rectangle.to_json_string([str3])
+        lis = Rectangle.from_json_string(json_str)
+        self.assertEqual(type(lis), list)
+        self.assertEqual(lis, [str3])
 
+    """ TEST TO CREATE AN INSTANCE WITH ALL ATTRIBUTES AS DICT """
 
+    def test_create(self):
+        """ 18 returns an instance with all attrs set """
+        dic = {'id': 1, 'width': 2, 'height': 3, 'x': 4, 'y': 5}
+        r = Rectangle.create(**dic)
+        r_dict = r.to_dictionary()
+        self.assertEqual(r_dict, dic)
 
+        str4 = {}
+        dic = {'id': 2, 'width': 1, 'height': 1, 'x': 0, 'y':0}
+        r = Rectangle.create(**str4)
+        r_dict = r.to_dictionary()
+        self.assertEqual(r_dict, dic)
 
+        dic = {'id': 3, 'width': 20, 'height': 1, 'x': 0, 'y':0}
+        r = Rectangle.create(width=20)
+        r_dict = r.to_dictionary()
+        self.assertEqual(r_dict, dic)
 
+        with self.assertRaises(TypeError):
+            r = Rectangle.create(1, 2)
 
+    """ TEST TO LOAD FROM FILE """
 
+    def test_load_from_file(self):
+        """ return a list of instances from a file """
+        a = "Rectangle.json"
+        if os.path.exists(a):
+            os.remove(a)
+        lis = Rectangle.load_from_file()
+        self.assertEqual(lis, [])
 
+        r1 = Rectangle(1, 2, 3, 4, 5)
+        r2 = Rectangle(6, 7, 8, 9, 10)
+        r1_d = r1.to_dictionary()
+        r2_d = r2.to_dictionary()
+        Rectangle.save_to_file([r1, r2])
+        lis = Rectangle.load_from_file()
+        r1_s = lis[0].to_dictionary()
+        r2_s = lis[1].to_dictionary()
+        self.assertEqual(r1_s, r1_d)
+        self.assertEqual(r2_s, r2_d)
+
+        
 
