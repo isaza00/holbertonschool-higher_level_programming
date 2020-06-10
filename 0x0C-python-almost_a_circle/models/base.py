@@ -191,7 +191,7 @@ class Base():
         pos_x = 0
         i = 0
 
-        for index, obj in enumerate(list_squares):
+        for obj in list_squares:
             i += 1
             dic = obj.to_dictionary()
             print(dic)
@@ -201,9 +201,7 @@ class Base():
 
             plan_x = s + x + pos_x + old_plan_x + 50
             plan_y = s + y + pos_y + old_plan_y + 50
-            if len(list_squares) > len(list_rectangles) + 1:
-                max_x = max(plan_x, plan_y) + 20
-                turtle.setworldcoordinates(-30, 30, max_x, -max_x)
+            max_x = max(plan_x, plan_y) + 20
 
             turtles3[i].penup()
             turtles3[i].goto(pos_x, pos_y)
@@ -239,5 +237,5 @@ class Base():
             turtles1[0].end_fill()
             turtles1[0].penup()
             pos_x += s + 80
-
+            turtle.setworldcoordinates(-30, 30, max_x, -max_x)
         turtle.Screen().exitonclick()
