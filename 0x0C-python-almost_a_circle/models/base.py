@@ -133,7 +133,7 @@ class Base():
             turtles2.append(turtle.Turtle())
             turtles3.append(turtle.Turtle())
             turtles4.append(turtle.Turtle())
-
+        turtle.setworldcoordinates(-30, 30, 400, -400)
         pos_x = 0
         pos_y = 0
         i = 0
@@ -194,13 +194,13 @@ class Base():
             turtles3[i].penup()
             turtles3[i].goto(pos_x, pos_y)
             turtles3[i].pendown()
-            turtles3[i].forward(x + w + 10)
+            turtles3[i].forward(x + s + 10)
 
             turtles4[i].penup()
             turtles4[i].goto(pos_x, pos_y)
             turtles4[i].pendown()
             turtles4[i].right(90)
-            turtles4[i].forward(y + h + 10)
+            turtles4[i].forward(y + s + 10)
             i += i
 
             turtles1[0].speed(1)
