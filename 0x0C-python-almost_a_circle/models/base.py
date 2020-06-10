@@ -128,15 +128,16 @@ class Base():
         turtles3 = []
         turtles4 = []
 
-        for i in range((len(list_rectangles) + 2)*2):
+        for i in range(len(list_rectangles) + len(list_squares) * 8):
             turtles1.append(turtle.Turtle())
             turtles2.append(turtle.Turtle())
             turtles3.append(turtle.Turtle())
             turtles4.append(turtle.Turtle())
-        turtle.setworldcoordinates(-30, 30, 400, -400)
         pos_x = 0
         pos_y = 0
         i = 0
+        x_plan = 0
+        y_plan = 0
         for obj in list_rectangles:
             i += 1
             dic = obj.to_dictionary()
@@ -145,7 +146,11 @@ class Base():
             h = dic['height']
             x = dic['x']
             y = dic['y']
-
+            plan_x = w + x + pos_x
+            plan_y = h + y + pos_y
+            max_x = max(plan_x, plan_y) + 20
+            max_y = -max(plan_x, plan_y) - 20
+            turtle.setworldcoordinates(-30, 30, max_x, max_y)
             turtles1[i].penup()
             turtles1[i].goto(pos_x, 0)
             turtles1[i].pendown()
@@ -180,16 +185,25 @@ class Base():
             turtles1[0].penup()
             pos_x += w + 80
 
+        old_plan_x = plan_x
+        old_plan_y = plan_y
         pos_y += -150 - h
         pos_x = 0
         i = 0
-        for obj in list_squares:
+
+        for index, obj in enumerate(list_squares):
             i += 1
             dic = obj.to_dictionary()
             print(dic)
             s = dic['size']
             x = dic['x']
             y = dic['y']
+
+            plan_x = s + x + pos_x + old_plan_x + 50
+            plan_y = s + y + pos_y + old_plan_y + 50
+            if len(list_squares) > len(list_rectangles) + 1:
+                max_x = max(plan_x, plan_y) + 20
+                turtle.setworldcoordinates(-30, 30, max_x, -max_x)
 
             turtles3[i].penup()
             turtles3[i].goto(pos_x, pos_y)
