@@ -155,12 +155,14 @@ class Base():
             turtles1[i].goto(pos_x, 0)
             turtles1[i].pendown()
             turtles1[i].forward(w + x + 10)
+            turtles1[i].write(w)
 
             turtles2[i].penup()
             turtles2[i].goto(pos_x, 0)
             turtles2[i].pendown()
             turtles2[i].right(90)
             turtles2[i].forward(h + y + 10)
+            turtles2[i].write(h)
             i += i
 
             turtles1[0].speed(1)
@@ -207,12 +209,14 @@ class Base():
             turtles3[i].goto(pos_x, pos_y)
             turtles3[i].pendown()
             turtles3[i].forward(x + s + 10)
+            turtles3[i].write(s)
 
             turtles4[i].penup()
             turtles4[i].goto(pos_x, pos_y)
             turtles4[i].pendown()
             turtles4[i].right(90)
             turtles4[i].forward(y + s + 10)
+            turtles4[i].write(s)
             i += i
 
             turtles1[0].speed(1)
