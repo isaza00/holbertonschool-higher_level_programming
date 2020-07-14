@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# run a sql file
+if [ "$2" == "" ]; then
+	cat "$1" | sudo mysql -hlocalhost -uroot -p
+elif [ "$2" == "h" ]; then
+	cat "$1" | sudo mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+else
+	cat "$1" | sudo mysql -hlocalhost -uroot -p "$2"
+fi
