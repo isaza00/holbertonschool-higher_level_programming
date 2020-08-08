@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 # list states from db hbtn_0e_0_usa
 
+import MySQLdb as Db
+import sys
+
 
 def run_command(args):
     """ print rows in states table """
@@ -18,6 +21,4 @@ def run_command(args):
     db.close()
 
 if __name__ == "__main__":
-    import MySQLdb as Db
-    import sys
     run_command(sys.argv[1:])
