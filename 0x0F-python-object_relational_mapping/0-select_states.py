@@ -5,8 +5,8 @@ import MySQLdb as Db
 import sys
 
 
-def run_command(args):
-    """ print rows in states table """
+if __name__ == "__main__":
+    args = sys.argv[1:]
     db = Db.connect(host="localhost",
                     port=3306,
                     user=args[0],
@@ -19,6 +19,3 @@ def run_command(args):
         print(row)
     c.close()
     db.close()
-
-if __name__ == "__main__":
-    run_command(sys.argv[1:])
