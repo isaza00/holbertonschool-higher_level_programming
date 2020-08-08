@@ -17,12 +17,7 @@ def run_command(args):
               ORDER BY cities.id ASC",
               (args[3],))
     rows = c.fetchall()
-    for row in rows:
-        print(row[0], end="")
-        if row != rows[-1]:
-            print(", ", end="")
-        else:
-            print()
+    print(", ".join(row[0] for row in rows))
     c.close()
     db.close()
 
