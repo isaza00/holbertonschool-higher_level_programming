@@ -10,10 +10,10 @@ def run_command(args):
                     passwd=args[1],
                     db=args[2])
     c = db.cursor()
-    c.execute("SELECT cities.name
-              FROM cities INNER JOIN states
-              ON cities.state_id=states.id
-              WHERE states.name=%s
+    c.execute("SELECT cities.name\
+              FROM cities INNER JOIN states\
+              ON cities.state_id=states.id\
+              WHERE states.name=%s\
               ORDER BY cities.id ASC",
               (args[3],))
     rows = c.fetchall()
