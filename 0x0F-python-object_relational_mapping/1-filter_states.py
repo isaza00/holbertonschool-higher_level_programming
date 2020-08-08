@@ -10,7 +10,10 @@ def run_command(args):
                     passwd=args[1],
                     db=args[2])
     c = db.cursor()
-    c.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    c.execute("SELECT * FROM states\
+        WHERE name\
+        LIKE BINARY 'N%'\
+        ORDER BY id ASC")
     rows = c.fetchall()
     for row in rows:
         print(row)
