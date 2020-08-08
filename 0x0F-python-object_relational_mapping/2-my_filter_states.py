@@ -4,9 +4,14 @@
 
 def run_command(args):
     """ print rows in states table that matches 4 arg"""
-    db = Db.connect(host="localhost", port=3306, user=args[0], passwd=args[1], db=args[2])
+    db = Db.connect(host="localhost",
+                    port=3306,
+                    user=args[0],
+                    passwd=args[1],
+                    db=args[2])
     c = db.cursor()
-    c.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC", (args[3],))
+    c.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+              (args[3],))
     rows = c.fetchall()
     for row in rows:
         print(row)

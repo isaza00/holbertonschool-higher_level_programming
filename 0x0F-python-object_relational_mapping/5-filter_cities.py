@@ -4,9 +4,18 @@
 
 def run_command(args):
     """ print rows in states table """
-    db = Db.connect(host="localhost", port=3306, user=args[0], passwd=args[1], db=args[2])
+    db = Db.connect(host="localhost",
+                    port=3306,
+                    user=args[0],
+                    passwd=args[1],
+                    db=args[2])
     c = db.cursor()
-    c.execute("SELECT cities.name FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC", (args[3],))
+    c.execute("SELECT cities.name
+              FROM cities INNER JOIN states
+              ON cities.state_id=states.id
+              WHERE states.name=%s
+              ORDER BY cities.id ASC",
+              (args[3],))
     rows = c.fetchall()
     for row in rows:
         print(row[0], end="")

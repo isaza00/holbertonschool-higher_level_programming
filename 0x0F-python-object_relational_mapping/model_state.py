@@ -2,12 +2,12 @@
 # creates model state, if error, delete unique on id
 
 from sqlalchemy import Column, Integer, String
-#from model_city import City
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 
 Base = declarative_base()
+
 
 class State(Base):
     """ create state class base """
