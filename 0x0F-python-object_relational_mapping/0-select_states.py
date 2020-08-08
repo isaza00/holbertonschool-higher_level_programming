@@ -1,16 +1,14 @@
 #!/usr/bin/python3
 """ list states from db hbtn_0e_0_usa """
 
-import MySQLdb as Db
-import sys
 
-
-if __name__ == "__main__":
+def run_command(args):
+    """ print rows in states table """
     db = Db.connect(host="localhost",
                     port=3306,
-                    user=sys.argv[1],
-                    passwd=sys.argv[1],
-                    db=sys.argv[3])
+                    user=args[0],
+                    passwd=args[1],
+                    db=args[2])
     c = db.cursor()
     c.execute("SELECT * FROM states ORDER BY id ASC")
     rows = c.fetchall()
@@ -18,3 +16,8 @@ if __name__ == "__main__":
         print(row)
     c.close()
     db.close()
+
+if __name__ == "__main__":
+    import MySQLdb as Db
+    import sys
+    run_command(sys.argv[1:])
