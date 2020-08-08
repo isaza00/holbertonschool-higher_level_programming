@@ -2,7 +2,6 @@
 """creates model CIty, if error, delete unique on id"""
 
 from model_state import Base, State
-from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
