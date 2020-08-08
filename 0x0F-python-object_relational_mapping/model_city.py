@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# creates model CIty, if error, delete unique on id
+"""creates model CIty, if error, delete unique on id"""
 
 from model_state import Base, State
 from sqlalchemy.orm import relationship
