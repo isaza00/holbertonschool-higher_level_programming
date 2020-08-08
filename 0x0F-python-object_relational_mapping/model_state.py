@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# creates model state, if error, delete unique on id
+"""creates model state, if error, delete unique on id"""
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
@@ -12,6 +12,6 @@ Base = declarative_base()
 class State(Base):
     """ create state class base """
     __tablename__ = 'states'
-    id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(128), nullable=False)
     cities = relationship("City", back_populates='states')
