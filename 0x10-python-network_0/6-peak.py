@@ -17,8 +17,8 @@ def find_recursively(lista, low, high, length):
     mid = int(mid)
     print("mid", mid)
     if mid == 0 or lista[mid - 1] <= lista[mid]\
-    and mid == (length - 1) or lista[mid + 1] <= lista[mid]:
-        return lista[mid]
+            and mid == (length - 1) or lista[mid + 1] <= lista[mid]:
+                return lista[mid]
     elif mid > 0 and lista[mid - 1] > lista[mid]:
         return find_recursively(lista, low, mid - 1, length)
     else:
