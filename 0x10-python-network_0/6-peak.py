@@ -12,10 +12,8 @@ def find_peak(list_of_integers):
 
 def find_recursively(lista, low, high, length):
     """ find peak recursively """
-    print("low", low, "high", high)
     mid = (low + high)/2
     mid = int(mid)
-    print("mid", mid)
     if mid == 0 or lista[mid - 1] <= lista[mid]\
             and mid == (length - 1) or lista[mid + 1] <= lista[mid]:
                 return lista[mid]
