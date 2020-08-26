@@ -161,7 +161,7 @@ class Piece:
 
     def draw_grid(self):
         """ draws grid """
-        self.step = 50
+        self.step = 25
         self.dic = {}
         self.window = tk.Tk()
         self.window.title("grid for Sarsa algo")
@@ -277,25 +277,24 @@ class Piece:
         self.stating()
         next_state = self.state
         next_action = self.egreedy(next_state)
-        if (next_state, next_action) not in Piece.q:
-            Piece.q[(next_state, next_action)] = 0
-        delta = alpha*(Piece.r + gamma*Piece.q[(next_state, next_action)] - q_s_a)
+        max_q = self.maxim_q(next_state)
+        delta = alpha*(Piece.r + gamma*max_q - q_s_a)
         Piece.q[(state, self.action)] = q_s_a + delta
         print("reward:", Piece.r)
         print("Q actual state-action", Piece.q[(state, self.action)])
         print("next state:", next_state)
         print("next action:", next_action)
-        print("Q next state-action", Piece.q[(next_state, next_action)])
+        print("max Q next state", max_q)
         print()
         self.state = next_state
         self.action = next_action
 
     def egreedy(self, next_state):
-        if self.iteration < 100000:
-            epsilon = 0.9
+        if self.iteration < 5000:
+            epsilon = 0.8
         else:
             self.step = 800
-            epsilon = 0.1
+            epsilon = 0.2
         self.iteration += 1
         aleatory = random.uniform(0, 1)
         choice = random.choice(list(self.actions.keys()))
@@ -314,11 +313,21 @@ class Piece:
         if sub_dic:
             max_action = max(sub_dic, key=sub_dic.get)
         return max_action
+    
+    def maxim_q(self, state):
+        q_list = []
+        max_q = 0
+        for key in Piece.q:
+            if key[0] == state:
+                q_list.append(Piece.q[key])
+        if q_list:
+            max_q = max(q_list)
+        return max_q
 
     def open_window(self):
         self.window.mainloop()
 
-piece = Piece(rows=30, columns=30)
+piece = Piece(rows=5, columns=5)
 piece.draw_grid()
 piece.periodic_square()
 piece.open_window()
