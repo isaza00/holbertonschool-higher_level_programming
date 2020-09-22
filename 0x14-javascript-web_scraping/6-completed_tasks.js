@@ -14,5 +14,5 @@ request(url, function (error, response, body) {
       dict[item.userId] += 1;
     }
   }
-  console.log(dict);
+  return console.log(dict);
 });
