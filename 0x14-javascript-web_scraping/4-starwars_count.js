@@ -12,5 +12,5 @@ request(url, function (error, response, body) {
       }
     }
   }
-  return console.log(sum);
+  console.log(sum);
 });
